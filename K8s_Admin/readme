@@ -1,0 +1,67 @@
+Lab -1: Pods
+
+# kubectl get pod
+# kubectl run nginx --image=nginx
+# kubectl describe pod newpods-7twdd
+# kubectl delete pod webapp
+
+Lab-2  Replicasets
+
+# kubectl get pods
+# kubectl get replicasets
+# kubectl describe replicasets new-replica-set
+# kubectl apply -f replicaset-definition-2.yaml
+# kubectl delete replicasets  replicaset-1 replicaset-2
+# kubectl edit replicaset new-replica-set
+# kubectl delete pod new-replica-set-m4fbd new-replica-set-vqrv8 new-replica-set-x96w7
+# kubectl scale replicaset new-replica-set --replicas=5
+# kubectl edit replicaset new-replica-set
+# kubectl scale replicaset new-replica-set --replicas=2
+
+Lab-3 Deployments
+
+# kubectl get pod -n default
+# kubectl get deployments -n default
+# kubectl get replicaset -n default
+# kubectl get pod
+# kubectl create deployment httpd-frontend --replicas=3 --image=httpd:2.4-alp
+ine
+
+Create an NGINX Pod
+
+#kubectl run nginx --image=nginx
+
+Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)
+
+#kubectl run nginx --image=nginx --dry-run=client -o yaml
+
+Create a deployment
+
+#kubectl create deployment --image=nginx nginx
+
+Generate Deployment YAML file (-o yaml). Don't create it(--dry-run)
+
+#kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+
+Generate Deployment YAML file (-o yaml). Don’t create it(–dry-run) and save it to a file.
+
+#kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx-deployment.yaml
+
+Make necessary changes to the file (for example, adding more replicas) and then create the deployment.
+
+#kubectl create -f nginx-deployment.yaml
+
+OR
+
+In k8s version 1.19+, we can specify the --replicas option to create a deployment with 4 replicas.
+
+#kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o yaml > nginx-deployment.yaml
+
+
+
+Lab-4 Practice Test - Namespaces
+
+#  kubectl get ns
+#  kubectl get pods -n research
+#  kubectl run redis -n finance --image=redis
+#  kubectl get pods -n marketing
