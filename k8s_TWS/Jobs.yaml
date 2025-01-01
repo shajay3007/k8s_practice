@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata: 
+  name: backup-task
+  namespace: nginx
+  labels:
+    app: webapp-bkp
+spec:
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      name: backup
+      labels:
+        app: batch-bask
+    spec: 
+      containers:
+        - name: busybox-container
+          image: busybox
+          command: ["sh","-c","echo hello world && sleep 10"]
+      restartPolicy: Never

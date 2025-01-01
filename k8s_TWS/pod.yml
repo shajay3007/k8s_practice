@@ -1,0 +1,12 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: webapp
+  namespace: ajay-ns-k8s
+  labels:
+    env: Dev
+spec:
+  containers:
+    - name: nginx-1
+      image: nginx
+
