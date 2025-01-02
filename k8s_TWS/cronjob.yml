@@ -1,0 +1,44 @@
+kind: CronJob
+apiVersion: batch/v1
+metadata: 
+  name: cronjob-demo
+  labels:
+    app: back-webapp
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata: 
+          name: minute-bkp
+          labels:
+            app: min-bkp
+        spec: 
+          containers:
+            - name: back-up
+              image: busybox
+              command: 
+              - sh
+              - -c
+              - >
+                echo "Backup started";
+                mkdir -p /backups &&
+                mkdir -p /data &&
+                cp -r /demo-data /backups &&
+                echo "Backup completed";
+              volumeMounts:
+                - name: data-volume
+                  mountPath: /demo-data
+                - name: backup-volume
+                  mountPath: /backups
+          restartPolicy: OnFailure  #OnFailure
+          volumes:
+            - name: data-volume
+              hostPath: 
+                path: /demo-data
+                type: DirectoryOrCreate
+            - name: backup-volume
+              hostPath: 
+                path: /backups
+                type: DirectoryOrCreate
+
