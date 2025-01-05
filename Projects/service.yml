@@ -1,8 +1,8 @@
 kind: Service
 apiVersion: v1
 metadata: 
-  name: notes-app-service
-  namespace: notesapp
+  name: nginx-app-service
+  namespace: nginx
   labels:
     env: dev
 spec:
