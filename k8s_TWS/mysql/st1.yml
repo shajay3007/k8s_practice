@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: mysql-cont
-          image: mysql:8.0
+          image: shajay3007/mysql:8.0
           ports:
             - containerPort: 3306
           env:
@@ -35,4 +35,3 @@ spec:
       resources:
         requests:
           storage: 1Gi
-
