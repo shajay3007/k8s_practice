@@ -1,0 +1,38 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: webapp-deployment
+  namespace: nginx
+  labels:
+    tier: frontend
+    env: Dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers: 
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+          resources:
+            requests: 
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          volumeMounts: 
+          - mountPath: /var/www/html
+            name: my-volume
+      volumes:
+        - name: my-volume
+          persistentVolumeClaim:
+            claimName: claim-volume
+

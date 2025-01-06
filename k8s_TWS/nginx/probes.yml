@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx-demo
+  namespace: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  serviceName: "nginx-service"
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+          livenessProbe:            # Liveness Probe
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5  # Time to wait before starting liveness checks
+            periodSeconds: 10       # Interval between liveness checks
+          readinessProbe:           # Readiness Probe
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10 # Time to wait before starting readiness checks
+            periodSeconds: 5        # Interval between readiness checks
+          startupProbe:             # Startup Probe
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 15 # Time to wait before starting startup checks
+            periodSeconds: 5        # Interval between startup checks
+
