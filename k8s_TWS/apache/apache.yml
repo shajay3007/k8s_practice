@@ -34,3 +34,21 @@ spec:
             limits:
               cpu: 200m
               memory: 256Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: apache
+  name: apache-service
+  labels:
+    app: apache
+spec:
+  selector:
+      app: apache
+  ports:
+  - port: 80 #exposed port on cluster level
+    protocol: TCP
+    targetPort: 80 # exposed port on pod level
+  type: ClusterIP 
+                
