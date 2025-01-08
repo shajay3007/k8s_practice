@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: apache
+
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: apache-deployment
+  namespace: apache
+  labels:
+    app: apache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata: 
+      labels:
+        app: apache 
+    spec:
+      containers:
+        - name: appache-cont
+          image: httpd:latest
+          ports:
+          - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: apache
+  name: apache-service
+  labels:
+    app: apache
+spec:
+  selector:
+      app: apache
+  ports:
+  - port: 80 #exposed port on cluster level
+    protocol: TCP
+    targetPort: 80 # exposed port on pod level
+  type: ClusterIP 
+             
+--- 
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: apache-vpa
+  namespace: apache
+spec:
+    targetRef:
+      apiVersion: "apps/v1"
+      kind: Deployment
+      name: apache-deployment
+    updatePolicy:
+      updateMode: "Auto"
+
+
