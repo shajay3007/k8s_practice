@@ -1,0 +1,72 @@
+kind: Namespace
+apiVersion: v1
+metadata: 
+  name: notesapp
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: notes-app-deployment
+  namespace: notesapp
+  labels:
+    tier: frontend
+    env: Dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes-app
+  template:
+    metadata:
+      labels:
+        app: notes-app
+    spec:
+      containers: 
+        - name: notes-app-cont
+          image: shajay3007/ask-notes-app-k8s
+          ports:
+            - containerPort: 80
+          resources:
+            requests: 
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: notesapp-service
+  namespace: notesapp
+spec:
+  selector:
+    app: notes-app
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 82
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: notesapp-hpa
+  namespace: notesapp
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: notes-app-deployment
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 5
+
+
+
