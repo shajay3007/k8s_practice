@@ -12,3 +12,46 @@ Key Achievements
 Enhanced operational efficiency with automation for service cleanup.
 Minimized risks of human error in managing critical services.
 Contributed to maintaining a streamlined and well-organized 
+
+
+
+Accomplishments and Updates
+Broker Restore and Disaster Recovery (DR) Sync
+
+Task: Implemented a robust process for broker restoration and DR synchronization.
+Details:
+Developed scripts to streamline the restoration of brokers in the DR environment.
+Ensured seamless synchronization between Production (PR) and Disaster Recovery (DR) environments to maintain service continuity.
+Outcome:
+Reduced recovery time during outages or DR scenarios.
+Improved system resilience and readiness for disaster recovery.
+Broker Execution Group (EG) Creation Automation
+
+Task: Automated the creation of Execution Groups (EGs) for IBM ACE brokers.
+Details:
+Designed and implemented Python and Shell scripts to automate the process of EG creation, including configurations and deployment.
+Integrated validation steps to ensure accurate and consistent EG setups.
+Outcome:
+Reduced manual effort and deployment time for new EGs.
+Enhanced accuracy and consistency across environments.
+Key Achievements
+Established a reliable and automated Broker DR Sync process to ensure high availability during failover scenarios.
+Automated EG creation, enabling rapid deployment and standardization of configurations.
+Enhanced overall system efficiency and reduced human intervention for critical broker management tasks.
+
+
+Here's how you can phrase this achievement for a resume or report:
+
+**Resolved Critical Production Issues during PR DR Active Setup**  
+- Addressed a **response header missing error** on DPG by identifying and adding necessary ports on the firewall.  
+- Generated **PCAP files** to diagnose communication issues between **SYS** and **CBS**, utilizing a custom script to automate **curl commands** for troubleshooting.  
+
+This highlights your problem-solving skills, technical expertise, and ability to handle critical production setups effectively. Let me know if you need further refinement!
+
+
+Here’s a polished version of the statement:
+
+**Facilitated the Raising of FARs**  
+- Successfully raised **FARs (Financial Approval Requests)** in alignment with bankers' approvals, ensuring compliance with organizational protocols and timelines.
+
+This version emphasizes your role and attention to process adherence. Let me know if you'd like additional adjustments!
