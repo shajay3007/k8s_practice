@@ -1,1 +1,14 @@
 
+Accomplishments and Updates
+Automated Deletion of Services
+Task: Developed a script to automate the deletion of unused or obsolete services.
+Details:
+Designed using Python and Shell scripting to identify and remove services based on predefined criteria (e.g., inactivity, redundancy).
+Ensures that the environment remains optimized by reducing clutter and freeing up resources.
+Outcome:
+Reduced manual intervention and potential errors in service deletion.
+Improved system performance and resource utilization by eliminating unused services.
+Key Achievements
+Enhanced operational efficiency with automation for service cleanup.
+Minimized risks of human error in managing critical services.
+Contributed to maintaining a streamlined and well-organized 
